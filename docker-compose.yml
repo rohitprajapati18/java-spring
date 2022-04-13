@@ -7,6 +7,8 @@ services:
       - 8012:8080
     depends_on:
       - mongo
+    expose:
+      - 8080
   mongo:
     image: mongo:latest
     container_name: "mongo"
