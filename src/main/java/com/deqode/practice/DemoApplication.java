@@ -9,10 +9,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+import com.deqode.practice.model.BasicUser;
 import com.deqode.practice.model.GroceryItem;
 import com.deqode.practice.repository.CustomItemRepository;
 import com.deqode.practice.repository.ItemRepository;
 import com.deqode.practice.service.ItemService;
+import com.deqode.practice.service.JwtUserDetailsService;
 
 @SpringBootApplication
 @EnableMongoRepositories
@@ -20,6 +22,9 @@ public class DemoApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ItemService service;
+	
+	@Autowired
+	private JwtUserDetailsService userService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -61,6 +66,11 @@ public class DemoApplication implements CommandLineRunner {
 		System.out.println("\n------------FINAL COUNT OF GROCERY ITEMS-------------------------\n");
 		
 		service.findCountOfGroceryItems();
+		
+		BasicUser b = new BasicUser();
+		b.setUsername("admin");
+		b.setPassword("123");
+		System.out.println(userService.addNewUser(b));
 		
 		System.out.println("\n-------------------THANK YOU---------------------------");
 	}
