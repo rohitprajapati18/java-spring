@@ -3,11 +3,13 @@ package com.deqode.practice;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.verify;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.deqode.practice.model.GroceryItem;
@@ -28,14 +30,19 @@ public class MockitoBasicTest {
 	private ItemService itemService;
 	
 	@BeforeEach
+	public void init() {
+		MockitoAnnotations.openMocks(this);
+	}
+	
+	@BeforeEach
 	void setup() {
-		this.itemService = new ItemService(this.itemRepository, this.customRepository);
+		//this.itemService = new ItemService(this.itemRepository, this.customRepository);
 	}
 	
 	@Test
 	void BasicTest2() {
-		//itemService.deleteAllGroceryItems();
-		//itemService.createGroceryItems();
+		itemService.deleteAllGroceryItems();
+		itemService.createGroceryItems();
 		//GroceryItem g =  itemService.getGroceryItemByName("Whole Wheat Biscuit");
 		//assertThat(g.getName()).isEqualToIgnoringCase("Whole Wheat Biscuit");
 		itemService.showAllGroceryItems();
