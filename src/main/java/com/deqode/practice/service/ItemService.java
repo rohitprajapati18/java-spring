@@ -19,6 +19,15 @@ public class ItemService {
 	@Autowired
 	CustomItemRepository customRepo;
 	
+	public ItemService() {
+		
+	}
+	
+	public ItemService(ItemRepository item, CustomItemRepository custom) {
+		this.groceryItemRepo = item;
+		this.customRepo = custom;
+	}
+	
 	List<GroceryItem> itemList = new ArrayList<GroceryItem>();
 	
 	public void deleteAllGroceryItems() {
@@ -42,10 +51,11 @@ public class ItemService {
 		 itemList.forEach(item -> System.out.println(getItemDetails(item)));
 	 }
 	 
-	 public void getGroceryItemByName(String name) {
+	 public GroceryItem getGroceryItemByName(String name) {
 		 System.out.println("Getting item by name: " + name);
 		 GroceryItem item = groceryItemRepo.findItemByName(name);
 		 System.out.println(getItemDetails(item));
+		 return item;
 	 }
 	 
 	 public void getItemsByCategory(String category) {
