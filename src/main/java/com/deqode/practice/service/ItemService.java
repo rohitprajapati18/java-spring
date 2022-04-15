@@ -19,14 +19,6 @@ public class ItemService {
 	@Autowired
 	CustomItemRepository customRepo;
 	
-	public ItemService() {
-		
-	}
-	
-	public ItemService(ItemRepository item, CustomItemRepository custom) {
-		this.groceryItemRepo = item;
-		this.customRepo = custom;
-	}
 	
 	List<GroceryItem> itemList = new ArrayList<GroceryItem>();
 	
