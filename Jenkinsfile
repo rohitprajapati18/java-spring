@@ -7,14 +7,9 @@ pipeline {
                 sh 'mvn clean install -DskipTests'
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh 'mvn spring-boot:run'
             }
         }
     }
