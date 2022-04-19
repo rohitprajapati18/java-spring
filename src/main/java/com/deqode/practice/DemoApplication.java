@@ -66,6 +66,8 @@ public class DemoApplication implements CommandLineRunner {
 		System.out.println("\n------------FINAL COUNT OF GROCERY ITEMS-------------------------\n");
 		
 		service.findCountOfGroceryItems();
+
+		service.deleteAllBasicUser();
 		
 		BasicUser b = new BasicUser();
 		b.setUsername("admin");

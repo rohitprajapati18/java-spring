@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.deqode.practice.model.GroceryItem;
+import com.deqode.practice.repository.BasicUserRepository;
 import com.deqode.practice.repository.CustomItemRepository;
 import com.deqode.practice.repository.ItemRepository;
 
@@ -18,6 +19,9 @@ public class ItemService {
 	
 	@Autowired
 	CustomItemRepository customRepo;
+
+	@Autowired
+	BasicUserRepository basicUser;
 	
 	
 	List<GroceryItem> itemList = new ArrayList<GroceryItem>();
@@ -97,4 +101,8 @@ public class ItemService {
 		 
 		 return "";
 	 }
+
+    public void deleteAllBasicUser() {
+		basicUser.deleteAll();
+    }
 }
