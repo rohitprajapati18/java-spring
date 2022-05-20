@@ -1,15 +1,12 @@
 package com.deqode.practice;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import com.deqode.practice.model.BasicUser;
@@ -18,9 +15,6 @@ import com.deqode.practice.repository.CustomItemRepository;
 import com.deqode.practice.repository.ItemRepository;
 import com.deqode.practice.service.ItemService;
 import com.deqode.practice.service.JwtUserDetailsService;
-
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.ServletContext;
 
 @SpringBootApplication
 @EnableMongoRepositories
@@ -34,19 +28,6 @@ public class DemoApplication implements CommandLineRunner {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-	}
-
-	@Bean
-	ServletRegistrationBean jsfServletRegistration (ServletContext servletContext) {
-		//spring boot only works if this is set
-		servletContext.setInitParameter("com.sun.faces.forceLoadConfiguration", Boolean.TRUE.toString());
-
-		//FacesServlet registration
-		ServletRegistrationBean srb = new ServletRegistrationBean();
-		srb.setServlet(new FacesServlet());
-		srb.setUrlMappings(Arrays.asList("*.xhtml"));
-		srb.setLoadOnStartup(1);
-		return srb;
 	}
 
 	@Override
